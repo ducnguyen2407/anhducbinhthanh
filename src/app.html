@@ -1,0 +1,143 @@
+<template>
+  <div id="main_container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <a
+        class="navbar-brand header-title"
+        style="font-size: 15pt; font-weight: 500"
+      >
+        <img src="./resources/logo.png" alt="logo" height="50px" class="ml-2" />
+        Tên Đề Tài <span class="mobile-title">- Tên tác giả</span>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse"
+        id="navbarText"
+        style="font-size: 15pt; font-weight: 500"
+      >
+        <ul class="navbar-nav ml-auto">
+          <!-- <li class="nav-item active">
+            <a class="nav-link" href="###">Bản đồ Khu vực nghiên cứu</a>
+          </li> -->
+          <li class="nav-item active">
+            <a class="nav-link" href="###">${navbar.introduction}</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="###">Tin tức</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link">Góp ý</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" data-toggle="modal" data-target="#contactModal"
+              >Liên hệ</a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" data-toggle="modal" data-target="###"
+              >Đăng nhập</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Modal Liên Hệ -->
+    <div
+      class="modal fade"
+      id="contactModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="contactModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div
+            class="modal-header justify-content-center bg-primary text-white"
+          >
+            <h5 class="modal-title" id="contactModalLabel">
+              Thông tin liên hệ
+            </h5>
+          </div>
+          <div class="modal-body">
+            <!-- Thong tin ca nhan -->
+            <h4 class="text-center">Vũ Anh Khoa</h4>
+            <h3 class="text-center">
+              <strong>Trường Đại học Khoa học Tự nhiên</strong>
+            </h3>
+            <div class="mt-2">
+              <div>
+                <i class="fas fa-phone"></i> Số điện thoại: <b>0829050499</b>
+              </div>
+              <div>
+                <i class="fas fa-envelope"></i> Email:
+                <b>vuanhkhoa12@gmail.com</b>
+              </div>
+              <div>
+                <i class="fas fa-home"></i> Địa chỉ:
+                <b
+                  >Chung cư 10A, Trần Nhật Duật, Phường Tân Định, Thành phố Hồ
+                  Chí Minh</b
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Body -->
+  <div class="body_container">
+    <!-- Toolbox -->
+    <div class="container-fluid d-flex justify-content-center">
+      <div class="row w-100">
+        <div class="col">
+          <div class="toolbox-container">
+            <div class="tk">
+              <br />
+              <div class="input-group tk-3">
+                <span class="input-group-text" id="basic-addon1">start</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="nhập điểm bắt đầu"
+                  aria-describedby="basic-addon1"
+                  keyup.trigger="searchStartingPoint()"
+                  value.bind="startingPoint"
+                  />
+                </div>
+                <br />
+                <div class="input-group tk-3">
+                  <span class="input-group-text" id="basic-addon1">end</span>
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="nhập điểm kết thúc"
+                  aria-describedby="basic-addon1"
+                  value.bind="endPoint"
+                />
+              </div>
+              <br />
+              <button click.trigger="search()" type="submit" class="btn-primary">Tìm Kiếm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-auto d-flex justify-content-end"
+        style="width: 70vw; height: calc(100vh - 101px)"
+      >
+        <div id="map" ref="map" style="width: 100%; height: 100%"></div>
+      </div>
+    </div>
+  </div>
+</template>
