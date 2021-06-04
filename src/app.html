@@ -106,6 +106,7 @@
               <br />
               <div class="input-group tk-3">
                 <span class="input-group-text" id="basic-addon1">start</span>
+                </button>
                 <input
                   type="text"
                   class="form-control"
@@ -114,6 +115,18 @@
                   keyup.trigger="searchStartingPoint()"
                   value.bind="startingPoint"
                   />
+                  <ul class="dropdown-menu show" show.bind="startingPointPredictions.length" style="
+                  right: 0;
+                  left: auto;
+                  top: 100%;
+              " aria-labelledby="dropdownMenuButton1">
+                    <li repeat.for="description of startingPointPredictions">
+                      <a class="dropdown-item" href="#">
+                      ${description}
+                      </a>
+                    </li>
+                  </ul>
+                  
                 </div>
                 <br />
                 <div class="input-group tk-3">

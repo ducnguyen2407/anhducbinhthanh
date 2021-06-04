@@ -1,6 +1,8 @@
 import * as environment from '../config/environment.json';
 import {PLATFORM} from 'aurelia-pal';
 
+import 'babel-polyfill';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import './resources/goong.css';
