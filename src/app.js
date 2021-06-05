@@ -15,7 +15,8 @@ export class Hello {
 
     this.startingPoint = null;
     this.endPoint = null;
-
+    this.startingMarker = null;
+    this.endMarker = null;
     this.goongMap = null; // js map
     this.searchStartingPointTimeout = null;
     this.searchEndPointTimeout = null;
@@ -42,25 +43,27 @@ export class Hello {
   }
 
   searchStartingPoint() {
-    if(!this.startingPoint) return this.startingPointPredictions = []
+    if(this.startingMarker) this.startingMarker.remove()
+    if(!this.startingPoint) return this.startingPointPredictions = [] 
     clearTimeout(this.searchStartingPointTimeout);
     
     this.searchStartingPointTimeout = setTimeout(async () => {
       const center = this.goongMap.getCenter();
-
+      
       console.log(center);
-
+      
       const response = await getAutoCompletePlaces(this.startingPoint, center);
-
+      
       this.startingPointPredictions = response.data.predictions.map(p => p.description);
-
+      
       console.log(this.startingPointPredictions);
-
+      
     }, this.searchTimeout);
     this.searchStartingPoint 
     // goi api Places Search by keyword with autocomplete
   }
   searchEndPoint(){
+    if(this.endMarker) this.endMarker.remove()
     if(!this.endPoint) return this.endPointPredictions = []
     clearTimeout(this.searchEndPointTimeout);
     this.searchEndPointTimeout = setTimeout(async () => {
@@ -73,20 +76,44 @@ export class Hello {
 
   }
 
-  chooseEndPoint(description) {
+  async chooseEndPoint(description) {
     console.log(description);
     this.endPoint = description 
-    this.endPointPredictions = [] 
+    this.endPointPredictions = []
+    const response_endmarker = await forwardGeocoding(this.endPoint);
+    const latend = response_endmarker.data.results[0].geometry.location.lat;
+    const lngend = response_endmarker.data.results[0].geometry.location.lng;
+    console.log(latend, lngend);
+    this.endMarker = new goongjs.Marker(
+      {
+        color: '#E9EB8B'
+      }
+    )
+    .setLngLat([lngend, latend])
+    .addTo(this.goongMap)
   }
 
-  chooseStartingPoint(description) {
+  async chooseStartingPoint(description) {
     console.log(description);
     this.startingPoint = description 
     this.startingPointPredictions = []
-    const response_gc = forwardGeocoding(this.startingPoint);
-    console.log(response_gc);
+    const response_startmarker = await forwardGeocoding(this.startingPoint);
+    const latstart = response_startmarker.data.results[0].geometry.location.lat;
+    const lngstart = response_startmarker.data.results[0].geometry.location.lng;
+    console.log(latstart, lngstart);
+
+    this.startingMarker = new goongjs.Marker(
+      {
+        color: '#6BF6F6'
+      }
+    )
+    .setLngLat([lngstart, latstart])
+    .addTo(this.goongMap)
   }
-  let 
+  
+    
+  
+  
 
   
 

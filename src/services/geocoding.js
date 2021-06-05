@@ -8,7 +8,8 @@ import axios from 'axios';
 export function forwardGeocoding(address) {
   return axios.get(FORWARD_GEOCODING_API_URL, {
     params: {
-      api_key: API_KEY
+      api_key: API_KEY,
+      address : address
     }
   })
 }
