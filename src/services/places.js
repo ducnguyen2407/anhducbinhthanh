@@ -11,3 +11,13 @@ export function getAutoCompletePlaces(startingPoint, center) {
   })
 }
 
+export function getAutoCompletePlaces1(endPoint, center) {
+  return axios.get(PLACES_API_URL, {
+    params: {
+      api_key: API_KEY,
+      input: endPoint,
+      latlng: center.lat + ',' + center.lng
+    }
+  })
+}
+

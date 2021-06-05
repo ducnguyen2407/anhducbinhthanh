@@ -115,13 +115,15 @@
                   keyup.trigger="searchStartingPoint()"
                   value.bind="startingPoint"
                   />
-                  <ul class="dropdown-menu show" show.bind="startingPointPredictions.length" style="
+                  <ul class="dropdown-menu show " show.bind="startingPointPredictions.length" style="
                   right: 0;
                   left: auto;
                   top: 100%;
-              " aria-labelledby="dropdownMenuButton1">
+                  width:  100%;
+                  overflow : auto
+                  " aria-labelledby="dropdownMenuButton1">
                     <li repeat.for="description of startingPointPredictions">
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="#" click.trigger="chooseStartingPoint(description)">
                       ${description}
                       </a>
                     </li>
@@ -129,7 +131,7 @@
                   
                 </div>
                 <br />
-                <div class="input-group tk-3">
+                <div class="input-group tk-4">
                   <span class="input-group-text" id="basic-addon1">end</span>
                   <input
                   type="text"
@@ -137,9 +139,23 @@
                   placeholder="nhập điểm kết thúc"
                   aria-describedby="basic-addon1"
                   value.bind="endPoint"
-                />
-              </div>
-              <br />
+                  keyup.trigger="searchEndPoint()"
+                  />
+                  <ul class="dropdown-menu show " show.bind="endPointPredictions.length" style="
+                  right: 0;
+                  left: auto;
+                  top: 100%;
+                  width:  100%;
+                  overflow : auto
+                  " aria-labelledby="dropdownMenuButton1">
+                    <li repeat.for="description of endPointPredictions">
+                      <a class="dropdown-item" href="#" click.trigger="chooseEndPoint(description)">
+                      ${description}
+                      </a>
+                    </li>
+                  </ul>
+                  </div>
+                <br>
               <button click.trigger="search()" type="submit" class="btn-primary">Tìm Kiếm</button>
             </div>
           </div>
