@@ -111,7 +111,18 @@ export class Hello {
     .addTo(this.goongMap)
   }
   
+  getjson(){
+    const json = {"type":"MultiLineString","coordinates":[[[106.709283902,10.808347498],[106.709323701,10.8078911],[106.709329002,10.807829799]]]}
+    this.map.getSource('my data').setData(json)
+
     
+    // this.map.addSouce('my data', {
+    //   type: "geojson",
+    //   data : {"type":"MultiLineString","coordinates":[[[106.709283902,10.808347498],[106.709323701,10.8078911],[106.709329002,10.807829799]]]}
+
+  }
+  
+  
   
   
 
